@@ -11,19 +11,20 @@ const app = express();
 //configurar CORS
 app.use(cors());
 
+//Lectura y parseo del body
+app.use( express.json() );
+
 //base datos
 dbConnection();
+
+//Rutas
+app.use( '/api/usuarios', require('./routes/usuarios') );
+app.use( '/api/login', require('./routes/auth') );
 
 //username: frank
 //password: MongoDB123.
 //rutas
-app.get( '/', (req, res) => {
 
-    res.json({
-        ok: true,
-        msg: 'Hola Frank'
-    });
-});
 
 app.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto ' +process.env.PORT);
