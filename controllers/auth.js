@@ -91,14 +91,25 @@ const googleSingIn = async( req, res = response) =>{
             msg: 'Token de Google incorrecto'
         });
     }
+}
 
-    
+const renewToken = async(req, res = response) => {
 
+    const uid = req.uid;
+
+    //generar el TOKEN
+    const token = await generarJWT( uid );
+
+    res.json({
+        ok:true,
+        token
+    });
 
 }
 
 
 module.exports = {
     login,
-    googleSingIn
+    googleSingIn,
+    renewToken
 }
