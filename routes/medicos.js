@@ -12,10 +12,11 @@
  const { getMedicos,
         createMedicos,
         updateMedicos,
-        deleteMedicos } = require('../controllers/medicos');
+        deleteMedicos,
+        getMedicoById } = require('../controllers/medicos');
  
  //Obtener usuarios
- router.get( '/', getMedicos);
+ router.get( '/', validarJWT , getMedicos);
  //crear usuarios
  router.post( '/',
      [ 
@@ -38,6 +39,8 @@
  );
  
  router.delete( '/:id',validarJWT, deleteMedicos );
+
+ router.get( '/:id',validarJWT, getMedicoById );
  
  
  
